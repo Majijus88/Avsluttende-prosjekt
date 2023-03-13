@@ -20,14 +20,14 @@ echo "<form action='4_iAvikSøkInput.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Søk i databasen'/>";
 echo "</form>";
 
-//Gir bruker mulighet til å legge inn sine egne ord i databasen
+//Gir bruker mulighet til å logge en ny hendelse i databasen
 echo "<h4>Registrer ny hendelse:</h4>";
 echo "<form action='5_iAvikRegistrerNyHendelse.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Registrer'/>";
 echo "</form>";
 
 
-//Gir bruker mulighet til å opprette en ny ordsky i fremtiden
+//Gir bruker mulighet til å lese opp hva slags hendelser de ulike kodene tilsvarer
 echo "<h4> Vis kodetabell:</h4>";
 echo "<form action='6_iAvikOppslagstabell.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Informasjon'/>";
