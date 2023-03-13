@@ -1,0 +1,1 @@
+<h1> Placeholder - Her kan man registere ny bruker </h1>
