@@ -1,48 +1,47 @@
 
 <?php
-
-@session_start();
 include "Funksjoner.inc.php";
 sjekk_autentisert();
 
-echo " <h1> Hovedmeny </h1> ";
-echo " <p>Velg blant følgende:</p> ";
+// Oppretter to variabler som lagrer dagens dato, samt brukernavnet tilhørende personen som er innlogget
+$dagensDato = date("d.m.y");
+$innlogget_bruker = $_POST['bruker'];
 
-//Gir bruker mulighet til å se på alt som har blitt lagret i databasen sålangt
+echo " <h1> Velkommen til hovedmenyen </h1> ";
+echo " <p>Du har følgende valg:</p> ";
+
+//Gir innlogget bruker mulighet til å se på alle hendelser som er logget for dagen sålangt
 echo "<h4> Se alt som ligger i databasen </h4>";
 echo "<form action='3_iAvikFraDB' method='post'>";
 echo "<input type='submit' name='knapp' value='Vis alle registrerte hendelser'/>";
 echo "</form>";
 
-//Gir bruker mulighet til å søke etter spesifikke ord i databasen
+//Gir bruker mulighet til å søke etter spesifikke koder eller initialer i databasen
 echo "<h4>Søk etter konkret hendelse i databasen:</h4>";
 echo "<form action='4_iAvikSøkInput.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Søk i databasen'/>";
 echo "</form>";
 
-//Gir bruker mulighet til å legge inn sine egne ord i databasen
+//Gir bruker mulighet til å legge inn en ny hendelse for dagen
 echo "<h4>Registrer ny hendelse:</h4>";
 echo "<form action='5_iAvikRegistrerNyHendelse.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Registrer'/>";
 echo "</form>";
 
-
-//Gir bruker mulighet til å opprette en ny ordsky i fremtiden
+//Gir bruker mulighet til å få en oversikt over hva de forskjellige kodene betyr
 echo "<h4> Vis kodetabell:</h4>";
 echo "<form action='6_iAvikOppslagstabell.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Informasjon'/>";
 echo "</form>";
 
-$dagensDato = date("d.m.y");
-
-echo "<h3> Dine registrerte hendelser - " . $dagensDato . "</h3>";
+// Viser brukers siste loggede hendelser ved å hente ut data fra avik-tabellen.  lagt inn av bruker
+echo "<p> Hei <b> $innlogget_bruker </b>Du har følgende registrerte hendelser " . $dagensDato . "</p>";
 
 $db = kobleTilDB();
-$sql = "SELECT * FROM avik";
+$sql = "SELECT * FROM avik WHERE brukernavn = '$innlogget_bruker' ";
 $resultat = $db->query($sql);
 
-echo "<p>$db->error</p>";
-
+// Henter ut alle funn i databasen og liser opp basert på formatet nedenfor
 while ($rad = $resultat->fetch_assoc()) {
     echo "<strong> Hendelses-ID: </strong> " . $rad['id'] . "<br>";
     echo "<strong> Pasient:  </strong>" . $rad['initialer'] . "<br>";
@@ -51,6 +50,8 @@ while ($rad = $resultat->fetch_assoc()) {
     echo "<hr>";
 }
 
+// Lukker forbindelsen til databasen
+mysqli_close($db);
 
 if ( isset($_SESSION['innlogget']) ) {
     echo "<br>";
@@ -58,4 +59,6 @@ if ( isset($_SESSION['innlogget']) ) {
     echo "<p>Om du er ferdig kan du logge ut nedenfor</p>";
 	echo "<input type='submit' name='knapp' value='Logg ut' />";
     }
+
+   // var_dump($_POST);
 ?>
