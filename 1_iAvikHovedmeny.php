@@ -22,13 +22,22 @@ echo "<form action='4_iAvikSøkInput.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Søk i databasen'/>";
 echo "</form>";
 
+<<<<<<< HEAD
 //Gir bruker mulighet til å legge inn en ny hendelse for dagen
+=======
+//Gir bruker mulighet til å logge en ny hendelse i databasen
+>>>>>>> c1e60bf05cb8df882cfe3913fdcb9e92327e4199
 echo "<h4>Registrer ny hendelse:</h4>";
 echo "<form action='5_iAvikRegistrerNyHendelse.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Registrer'/>";
 echo "</form>";
 
+<<<<<<< HEAD
 //Gir bruker mulighet til å få en oversikt over hva de forskjellige kodene betyr
+=======
+
+//Gir bruker mulighet til å lese opp hva slags hendelser de ulike kodene tilsvarer
+>>>>>>> c1e60bf05cb8df882cfe3913fdcb9e92327e4199
 echo "<h4> Vis kodetabell:</h4>";
 echo "<form action='6_iAvikOppslagstabell.php' method='post'>";
 echo "<input type='submit' name='knapp' value='Informasjon'/>";
@@ -59,6 +68,10 @@ if ( isset($_SESSION['innlogget']) ) {
     echo "<p>Om du er ferdig kan du logge ut nedenfor</p>";
 	echo "<input type='submit' name='knapp' value='Logg ut' />";
     }
+<<<<<<< HEAD
 
    // var_dump($_POST);
 ?>
+=======
+?>
+>>>>>>> c1e60bf05cb8df882cfe3913fdcb9e92327e4199
