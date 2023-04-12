@@ -19,17 +19,6 @@ function sjekk_autentisert() {
 ?>
 
 <?php
-function bevarInformasjon($valg) {
-	foreach($valg as $indeks=>$verdi){
-			if( !strstr($indeks, "knapp") ) {
-				echo "<input type='hidden' ";
-				echo "name='$indeks' value='$verdi' />\n";
-			}
-	}
-}
-?>
-
-<?php
 function dumpInnhold($var){
 		echo '<pre>';
 		print_r($var);
